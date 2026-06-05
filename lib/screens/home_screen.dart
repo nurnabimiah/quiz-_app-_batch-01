@@ -1,24 +1,41 @@
 
+import 'package:class_1/screens/add_quiz_screen.dart';
 import 'package:class_1/screens/question_screen.dart';
 import 'package:class_1/utils/category_class.dart';
 import 'package:flutter/material.dart';
 
 import '../widget/category_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      
+
       appBar: AppBar(
         backgroundColor: Colors.blue,
         centerTitle: true,
         title: Text("Quizi",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),),
       ),
-      
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const AddQuizScreen()),
+          );
+          setState(() {});
+        },
+        child: const Icon(Icons.add),
+      ),
+
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -32,9 +49,9 @@ class HomeScreen extends StatelessWidget {
 
               Expanded(
                 child: ListView.builder(
-                    itemCount: AppData.categories.length,
+                    itemCount: categories.length,
                     itemBuilder: (context,index){
-                      final category = AppData.categories[index];
+                      final category = categories[index];
 
                       return CategoryCard(
                           title: category.name,
