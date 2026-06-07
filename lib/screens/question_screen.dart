@@ -3,9 +3,9 @@
 
 import 'package:class_1/utils/category_class.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class QuestionScreen extends StatelessWidget {
-
   final CategoryModel category;
 
   const QuestionScreen({super.key,required this.category});
@@ -13,8 +13,16 @@ class QuestionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(category.name),),
 
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(category.name),
+        leading: IconButton(onPressed: (){
+          context.pop();
+
+          // Navigator.pop(context);
+        }, icon: Icon(Icons.arrow_back_ios)),
+      ),
 
       body: ListView.builder(
           padding: EdgeInsets.all(16),
@@ -79,9 +87,6 @@ class QuestionScreen extends StatelessWidget {
 
           }
       ),
-      
-      
-      
       
     );
   }
