@@ -26,31 +26,31 @@ class QuestionModel {
 }
 
 
-List<CategoryModel> categories = [
-
-  CategoryModel(
-      name: "Science",
-      icon: Icons.science,
-      questions: []
-  ),
-
-
-  CategoryModel(
-      name: "Math",
-      icon: Icons.calculate,
-      questions: []
-  ),
-
-
-  CategoryModel(
-      name: "Bangla",
-      icon: Icons.menu_book,
-      questions: []
-  )
-
-
-
-];
+// List<CategoryModel> categories = [
+//
+//   CategoryModel(
+//       name: "Science",
+//       icon: Icons.science,
+//       questions: []
+//   ),
+//
+//
+//   CategoryModel(
+//       name: "Math",
+//       icon: Icons.calculate,
+//       questions: []
+//   ),
+//
+//
+//   CategoryModel(
+//       name: "Bangla",
+//       icon: Icons.menu_book,
+//       questions: []
+//   )
+//
+//
+//
+// ];
 
 
 // class AppData{

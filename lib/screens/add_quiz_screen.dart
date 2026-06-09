@@ -26,34 +26,34 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
   String selectedCategory = "Science";
   int correctAnswer = 0;
 
-  void saveQuestion(){
-
-    for( var category in categories){
-      if(category.name == selectedCategory){
-        category.questions.add(
-          QuestionModel(
-              questions: questionController.text,
-              options: [
-                option1Controller.text,
-                option2Controller.text,
-                option3Controller.text,
-                option4Controller.text,
-              ],
-              correctAnswer: correctAnswer
-          )
-
-        );
-
-        break;
-
-      }
-    }
-
-    Navigator.pop(context);
-
-
-
-  }
+  // void saveQuestion(){
+  //
+  //   for( var category in categories){
+  //     if(category.name == selectedCategory){
+  //       category.questions.add(
+  //         QuestionModel(
+  //             questions: questionController.text,
+  //             options: [
+  //               option1Controller.text,
+  //               option2Controller.text,
+  //               option3Controller.text,
+  //               option4Controller.text,
+  //             ],
+  //             correctAnswer: correctAnswer
+  //         )
+  //
+  //       );
+  //
+  //       break;
+  //
+  //     }
+  //   }
+  //
+  //   Navigator.pop(context);
+  //
+  //
+  //
+  // }
 
 
 
@@ -81,29 +81,29 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
           
             children: [
 
-              DropdownButtonFormField(
-                  decoration: InputDecoration(
-                    labelText: "Select Category",
-                    border: OutlineInputBorder(
-          
-                    )
-                  ),
-                  items: categories.map((cateory){
-                    return DropdownMenuItem(
-                        value: cateory.name,
-                        child: Text(cateory.name)
-                    );
-          
-                  }).toList() ,
-                  onChanged: (value){
-                    setState(() {
-                      selectedCategory = value!;
-                      print("========================== selected category: ${selectedCategory}");
-          
-                    });
-          
-                  }
-              ),
+              // DropdownButtonFormField(
+              //     decoration: InputDecoration(
+              //       labelText: "Select Category",
+              //       border: OutlineInputBorder(
+              //
+              //       )
+              //     ),
+              //     items: categories.map((cateory){
+              //       return DropdownMenuItem(
+              //           value: cateory.name,
+              //           child: Text(cateory.name)
+              //       );
+              //
+              //     }).toList() ,
+              //     onChanged: (value){
+              //       setState(() {
+              //         selectedCategory = value!;
+              //         print("========================== selected category: ${selectedCategory}");
+              //
+              //       });
+              //
+              //     }
+              // ),
           
           
           
@@ -197,7 +197,7 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
                 height: 55,
                 child: ElevatedButton(
                     onPressed: (){
-                      saveQuestion();
+                      // saveQuestion();
           
                     },
                     child: Text("Save Quiz")

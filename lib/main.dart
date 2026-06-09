@@ -1,22 +1,32 @@
 
-
+import 'package:class_1/provider/counter_provider.dart';
+import 'package:class_1/provider/navigation_provider.dart';
+import 'package:class_1/provider/quiz_provider.dart';
 import 'package:class_1/screens/add_quiz_screen.dart';
-import 'package:class_1/screens/home_screen.dart';
 import 'package:class_1/screens/navigation_screen.dart';
 import 'package:class_1/screens/question_screen.dart';
+import 'package:class_1/screens/quiz%20_result_screen.dart';
 import 'package:class_1/utils/category_class.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 
 void main() {
-  runApp(const YourApp());
+  runApp( MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CounterProvider()),
+        ChangeNotifierProvider(create: (context) => NavigationProvider()),
+        ChangeNotifierProvider(create: (context) => QuizProvider()),
+      ],
+      child: const YourApp()));
 }
 
 
 class YourApp extends StatelessWidget{
+
   const YourApp ({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,46 +34,15 @@ class YourApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
 
-
-      // onGenerateRoute: (setting){
-      //   switch (setting.name){
-      //     case  "/home":
-      //       return MaterialPageRoute(
-      //           builder: (_) => HomeScreen()
-      //       );
-      //
-      //       case "add-quiz":
-      //         return MaterialPageRoute(
-      //             builder: (_) => AddQuizScreen());
-      //
-      //     case "question":
-      //       final category = setting.arguments as CategoryModel;
-      //       return MaterialPageRoute(
-      //           builder: (_) => QuestionScreen(category: category));
-      //
-      //
-      //       default:
-      //         return MaterialPageRoute(builder: (_)=> Scaffold(body: Center(child: Text("Route not found"),),));
-      //
-      //
-      //
-      //
-      //
-      //   }
-      //
-      //
-      // },
-
     );
   }
-  
-  
+
+
 }
-
-
 
  final GoRouter appRouter = GoRouter(
      routes: [
+
        GoRoute(
            path: '/',
            builder: (context,state) => NavigationScreen()
@@ -81,6 +60,14 @@ class YourApp extends StatelessWidget{
        GoRoute(
            path: '/add-quiz',
            builder: (context,state) => AddQuizScreen()
+       ),
+
+       GoRoute(
+           path: '/result',
+           builder: (context,state) {
+             final category = state.extra as CategoryModel;
+             return QuizResultScreen(category: category);
+           }
        ),
 
 
