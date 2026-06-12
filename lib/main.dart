@@ -2,6 +2,7 @@
 import 'package:class_1/provider/counter_provider.dart';
 import 'package:class_1/provider/navigation_provider.dart';
 import 'package:class_1/provider/quiz_provider.dart';
+import 'package:class_1/provider/theme_provider.dart';
 import 'package:class_1/screens/add_quiz_screen.dart';
 import 'package:class_1/screens/navigation_screen.dart';
 import 'package:class_1/screens/question_screen.dart';
@@ -12,14 +13,19 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final themeProvider = ThemeProvider();
+  await themeProvider.loadTheme();
   runApp( MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CounterProvider()),
         ChangeNotifierProvider(create: (context) => NavigationProvider()),
         ChangeNotifierProvider(create: (context) => QuizProvider()),
+        ChangeNotifierProvider.value(value: themeProvider),
       ],
-      child: const YourApp()));
+      child: const YourApp())
+  );
 }
 
 
@@ -29,10 +35,16 @@ class YourApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+
+    final themeProvider = context.watch<ThemeProvider>();
+
     // TODO: implement build
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: themeProvider.isDark ? ThemeMode.dark : ThemeMode.light ,
 
     );
   }
