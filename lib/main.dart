@@ -7,7 +7,7 @@ import 'package:class_1/screens/add_quiz_screen.dart';
 import 'package:class_1/screens/navigation_screen.dart';
 import 'package:class_1/screens/question_screen.dart';
 import 'package:class_1/screens/quiz%20_result_screen.dart';
-import 'package:class_1/utils/category_class.dart';
+import 'package:class_1/model/category_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -64,7 +64,7 @@ class YourApp extends StatelessWidget{
        GoRoute(
            path: '/question',
            builder: (context,state) {
-             final category = state.extra as CategoryModel;
+             final category = state.extra as TriviaCategory;
              return QuestionScreen(category: category);
            }
        ),
@@ -77,7 +77,7 @@ class YourApp extends StatelessWidget{
        GoRoute(
            path: '/result',
            builder: (context,state) {
-             final category = state.extra as CategoryModel;
+             final category = state.extra as TriviaCategory;
              return QuizResultScreen(category: category);
            }
        ),

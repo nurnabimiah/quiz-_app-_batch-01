@@ -1,7 +1,7 @@
 
 
 
-import 'package:class_1/utils/category_class.dart';
+import 'package:class_1/model/questions_response_model.dart';
 import 'package:flutter/material.dart';
 
 class AddQuizScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
 
 
 
-  final List<QuestionModel> questions = [];
+  final List<Result> questions = [];
 
   String selectedCategory = "Science";
   int correctAnswer = 0;

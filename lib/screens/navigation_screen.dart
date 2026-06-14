@@ -32,60 +32,60 @@ class NavigationScreen extends StatelessWidget {
 
      bottomNavigationBar: BottomNavigationBar(
 
-         selectedItemColor: Colors.blue,
-         unselectedItemColor: Colors.grey,
-         type:  BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
+          type:  BottomNavigationBarType.fixed,
 
-         currentIndex: navProvider.currentIndex,
+          currentIndex: navProvider.currentIndex,
 
-         onTap: (index){
-           context.read<NavigationProvider>().setIndex(index);
-         },
+          onTap: (index){
+            context.read<NavigationProvider>().setIndex(index);
+          },
 
-         items: [
+          items: [
 
-           BottomNavigationBarItem(
-               icon: Icon(Icons.home_outlined),
-               activeIcon: Icon(Icons.home),
-               label: "Home"
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined),
+                activeIcon: Icon(Icons.home),
+                label: "Home"
 
-           ),
-
-
-
-           BottomNavigationBarItem(
-               icon: Icon(Icons.search),
-               activeIcon: Icon(Icons.search),
-               label: "Search"
-
-           ),
+            ),
 
 
 
-           BottomNavigationBarItem(
-               icon: Icon(Icons.favorite_border),
-               activeIcon: Icon(Icons.favorite),
-               label: "Activity"
+            BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                activeIcon: Icon(Icons.search),
+                label: "Search"
 
-           ),
-
-
-
-           BottomNavigationBarItem(
-               icon: Icon(Icons.person_outline),
-               activeIcon: Icon(Icons.person),
-               label: "Profile"
-
-           )
+            ),
 
 
 
-         ]
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite_border),
+                activeIcon: Icon(Icons.favorite),
+                label: "Activity"
 
-     ),
+            ),
 
 
 
-    );
-  }
-}
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline),
+                activeIcon: Icon(Icons.person),
+                label: "Profile"
+
+            )
+
+
+
+          ]
+
+      ),
+
+
+
+     );
+   }
+ }
