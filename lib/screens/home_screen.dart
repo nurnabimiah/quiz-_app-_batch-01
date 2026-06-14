@@ -18,6 +18,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      final provider = context.read<QuizProvider>();
+
+      if(provider.categories.isEmpty){
+        provider.fetchCategories();
+      }
+
+    });
+
+  }
 
 
   @override
@@ -55,14 +69,52 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context, quizProvider, child) {
                     final categories = quizProvider.categories;
 
+                    if(quizProvider.isLoading && categories.isEmpty){
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+
+                    }
+
+                    // 2. error state
+
+                    if(quizProvider.errorMessage !=null  && categories.isEmpty){
+                      return  Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(quizProvider.errorMessage!,textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.red),
+                            ),
+                            SizedBox(height: 15,),
+                            ElevatedButton(onPressed: ()=> quizProvider.fetchCategories(),
+                                child: Text("Retry")
+                            )
+
+                          ],
+                        )
+                      );
+
+                    }
+
+
+                    // 3.Empty state
+                    if(categories.isEmpty){
+                      return Center(child: Text("No categories found"),);
+                    }
+
+
+
+                   // Date state (using Triviacategory from CategoryResponsemodel)
                     return ListView.builder(
+
                         itemCount:categories.length,
                         itemBuilder: (context,index){
                           final category = categories[index];
                           return CategoryCard(
-                              title: category.name,
-                              subTitle: "${category.questions.length} Question",
-                              iconData: category.icon,
+                              title: category.name ?? '',
+                              subTitle: " Trivia Category Id : ${category.id}",
+                              iconData: Icons.book,
                               onTap: () {
                                 context.push("/question",extra: category);
                                 // Navigator.push(context,MaterialPageRoute(builder: (_) => QuestionScreen(category: category,))

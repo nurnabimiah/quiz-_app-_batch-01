@@ -38,6 +38,7 @@ dependencies:
   flutter_svg: 
   provider: ^6.1.2
   shared_preferences:
+  dio:
 
 
 
